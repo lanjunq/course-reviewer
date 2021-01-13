@@ -19,13 +19,13 @@ The basic workflow of the application is the following
 Users primarily interact with the application through browser, and the main page looks like the following: 
 
 <!-- Todo: insert homepage UI here -->
-![Alt text](images/user_interface.jpg?raw=true "App Workflow Logic")
+![Alt text](images/user_interface.jpg?raw=true "User Interface")
 
 
 ### Tech Stack
 
 <!-- Todo: make a graph of the tech used in the project -->
-![Alt text](images/tech_stack.jpg?raw=true "App Workflow Logic")
+![Alt text](images/tech_stack.jpg?raw=true "Tech Stack")
 
 
 ### Optional Features
