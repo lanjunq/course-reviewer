@@ -12,17 +12,20 @@ The purpose of this application is to create a course review system that aggrega
 The basic workflow of the application is the following
 
 <!-- Todo: insert workflow graph here -->
+![Alt text](images/workflow.jpg?raw=true "App Workflow Logic")
 
 
 ### UI
 Users primarily interact with the application through browser, and the main page looks like the following: 
 
 <!-- Todo: insert homepage UI here -->
+![Alt text](images/user_interface.jpg?raw=true "App Workflow Logic")
 
 
 ### Tech Stack
 
 <!-- Todo: make a graph of the tech used in the project -->
+![Alt text](images/tech_stack.jpg?raw=true "App Workflow Logic")
 
 
 ### Optional Features
