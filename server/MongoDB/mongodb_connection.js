@@ -1,3 +1,4 @@
+// imports
 const mongoose = require('mongoose')
 
 // get atlas connection password
@@ -13,11 +14,9 @@ mongoose.connect(uri, {
     useUnifiedTopology: true 
 })
 
-const db = mongoose.connection;
-
-db.once('open', () => {
+mongoose.connection.once('open', () => {
     console.log('Successfully connect to MongoDB Atlas!');
-    // db.db('raw_data').collection('comment')
 })
 
-module.exports = db
+// exports
+module.exports = mongoose.connection;

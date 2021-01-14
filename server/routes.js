@@ -1,7 +1,7 @@
 /* ------ imports ------ */
 const mongoose = require('mongoose')
-const Comment = require('./MongoDB/comment.js')
-const mongoDB = require('./MongoDB/atlas_connector.js')
+const Review = require('./MongoDB/review.js')
+const mongoDB = require('./MongoDB/mongodb_connection.js')
 
 
 /* ------ GET Handlers ------ */
@@ -10,7 +10,7 @@ function getReviews(req, res) {
 
   // Todo: add choose by course number here
 
-  Comment.find()
+  Review.find()
     .then(data => {
       res.json(data)
     })
@@ -21,13 +21,16 @@ function getReviews(req, res) {
 }
 
 function getWordCloud(req, res) {
+
+  // Todo: implement the logic here
+
   res.end()
 }
 
 /* ------ POST Handlers ------ */
 function postReview(req, res) {
   console.log('postReview() running');
-  const review = new Comment({
+  const review = new Review({
     _id : new mongoose.Types.ObjectId(),
     content : req.body.content
   });
