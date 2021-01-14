@@ -29,6 +29,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get("/wordCloud/:courseNum", routes.getWordCloud);
 app.get("/reviews/:courseNum", routes.getReviews);
 
+app.post("/review", routes.postReview);
+
 app.get('*', (req, res) => res.status(404).send({ msg: `Page ${req.url} not found.` }));
 app.listen(8081, () => {
 	console.log(`Server listening on PORT 8081`);
