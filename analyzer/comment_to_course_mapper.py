@@ -21,7 +21,6 @@ DEBUG = False
 class CommentToCourseMapper:
 
     def __init__(self):
-
         # init
         self.course_comments_map = collections.defaultdict(list)
         self.course_numbers = COURSES_OF_INTEREST
@@ -34,20 +33,15 @@ class CommentToCourseMapper:
             # read lines one-by-one
             for line in fd:
                 self.add_line_to_corresponding_course(line)
-
             fd.close()
-
-        if DEBUG: print(self.course_comments_map)
-
-        self.save_as_json()
+        # self.save_as_json()
 
     def findFiles(self):
         self.files = glob.glob( READ_PATH + "*.txt")
 
     def add_line_to_corresponding_course(self, line):
         # sanity check
-        if self.is_invalid(line):
-            pass
+        if self.is_invalid(line): pass
         # 
         for number in self.course_numbers:
             if number in line:
@@ -58,11 +52,12 @@ class CommentToCourseMapper:
         fd = open(WRITE_PATH, 'w+')
         fd.write( course_comments_map_json )
         fd.close()
+    
+    def get_map(self):
+        return dict(self.course_comments_map)
 
     # Helper functions
     def is_invalid(self, line):
         if not line: return True
 
-
-# run
 CommentToCourseMapper()
