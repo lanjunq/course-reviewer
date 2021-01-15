@@ -2,6 +2,7 @@
 const mongoose = require('mongoose')
 const Review = require('./MongoDB/review.js')
 const mongoDB = require('./MongoDB/mongodb_connection.js')
+const Course = require('./MongoDB/course.js')
 
 
 /* ------ Hard-coded course numbers ------ */
@@ -12,10 +13,14 @@ CIT_COURSE_NUM = ['591', '592', '593', '594', '595', '596']
 /* ------ GET Handlers ------ */
 function getAllCourses(req, res) {
   var springCISCourses = SPRING_CIS_COURSES_NUM;
-  springCISCourses.forEach( (element, index, arr) => {
-    arr[index] = 'cis' + element;
+  springCISCourses.forEach((element, index, arr) => {
+    arr[index] = {
+      'department': 'cis',
+      'num': element,
+      'name': 'unknown'
+    };
   });
-  res.json({ courses: springCISCourses } );
+  res.json({ courses: springCISCourses });
 }
 
 function getReviews(req, res) {
@@ -23,11 +28,11 @@ function getReviews(req, res) {
 
   // Todo: add choose by course number here
 
-  Review.find({
-    'course': `${req.course}`
+  Course.find({
+    'course': `${req.params.course}`
   })
     .then(data => {
-      res.json(data)
+      res.json(data[0].comments);
     })
     .catch(error => {
       console.log(error);
@@ -37,9 +42,16 @@ function getReviews(req, res) {
 
 function getWordCloud(req, res) {
 
-  // Todo: implement the logic here
-
-  res.end()
+  Course.find({
+    'course': `${req.params.course}`
+  })
+    .then(data => {
+      res.json(data[0].word_cloud);
+    })
+    .catch(error => {
+      console.log(error);
+      res.json(error);
+    })
 }
 
 /* ------ POST Handlers ------ */

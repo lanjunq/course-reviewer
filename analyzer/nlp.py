@@ -19,18 +19,18 @@ class NaturalLanguageProcessor():
 
     def __init__(self):
         self.stop_words = set(nltk.corpus.stopwords.words('english'))
+        self.tokenizer = RegexpTokenizer(r'\w+')
 
     def process(self, line):
-        tokenizer = RegexpTokenizer(r'\w+')
-        words = tokenizer.tokenize(line)
+        words = self.tokenizer.tokenize(line)
         words = [word.lower() for word in words]
         words = self.remove_stop_words(words)
         return words
     
-    def process_adj_only(self, line):
-        words = self.process(line)
-        # Todo: implement part-of-speech analysis logic
+    # Todo: implement part-of-speech analysis logic
+    # def process_adj_only(self, line):
+    #     words = self.process(line)
         
-        
+    # Helper function
     def remove_stop_words(self, tokens):
         return [w for w in tokens if not w in self.stop_words]

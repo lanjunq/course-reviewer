@@ -1,15 +1,31 @@
 # imports
 import nlp
-import comment_to_course_mapper
+import file_parser
+import output_formatter
+import os
 import nltk
+import json
+
 # named constants
-WORD_CLOUD_SIZE = 10
+WORD_CLOUD_SIZE = 20
+READ_PATH = './data/raw/'
+OUTPUT_PATH = './data/cleaned/toMongoDB.json'
 
 # create objects
-mapper = comment_to_course_mapper.CommentToCourseMapper()
+uncategorized_parser = file_parser.CommentToCourseMapper()
+categorized_parser = file_parser.FileToCourseMapper()
 processor = nlp.NaturalLanguageProcessor()
 
+# Todo: pass different file to different parser, according to source_data_info.json
+# files = glob.glob(READ_PATH + "*.txt")
+
+
+
 # helper function
+def tuples2lists(tuples):
+    print(tuples)
+    return [[x, y] for (x, y) in tuples]
+
 def generate_word_cloud(input_dict):
     course_cloud_dict = dict()
     for course, comments in input_dict.items():
@@ -17,13 +33,80 @@ def generate_word_cloud(input_dict):
         word_cloud = []
         for comment in comments:
             word_cloud.extend(processor.process(comment))
-        word_cloud.remove(str(course)) # remove the course number itself
+        # word_cloud.remove(str(course)) # remove the course number itself
+        word_cloud = list(filter((course).__ne__, word_cloud))
         # choose the top common words
         common_words = nltk.FreqDist(word_cloud).most_common(WORD_CLOUD_SIZE)
-        course_cloud_dict[course] = word_cloud
+        common_words = tuples2lists(common_words) # confront format
+        course_cloud_dict[course] = common_words
+
     return course_cloud_dict
 
+# print
+def helper_print(data):
+    for k, v in data.items():
+        print()
+        print(k)
+        print(v)
+
+# Helper function - save dictionary to JSON
+def dict_to_json(input_dict, output_path):
+    output = json.dumps(input_dict)
+    fd = open(output_path, 'w+')
+    fd.write(output)
+    print('Successfully save to ', output_path)
+
+
+
+# mongoDB target template
+'''
+{
+    'course': String,
+    'comments': [
+        {
+            'content': '',
+            'source': '',
+            'time': ''
+        },
+        {
+            
+        },
+    ]
+    'word_cloud': [
+        [ 'word', frequency ],
+        [                   ],
+    ]
+}
+'''
+
+# clear file
+# fd = open(OUTPUT_PATH, 'w+')
+# fd.close()
+
+def save_json(data, path):
+    fd = open(path, 'w+')
+    fd.write(data)
+    fd.close()
+    print('Successfully save to ', path)
+
 # generate word clouds
-course_to_comment_dict = mapper.get_map()
-course_cloud_dict = generate_word_cloud(course_to_comment_dict)
-print(course_cloud_dict)
+target = './data/raw/mock_comments.txt'
+d = uncategorized_parser.parse(target)
+cloud = generate_word_cloud(d)
+
+output_jsons = output_formatter.convert_to_jsons(d, cloud, 'mock_comments.txt')
+
+# 
+target = './data/raw/coursera_problem_solving_murphy.txt'
+d = categorized_parser.parse(target, 'murphy')
+cloud = generate_word_cloud(d)
+
+output_jsons = output_formatter.convert_to_jsons(
+    d, cloud, 'coursera_problem_solving_murphy.txt')
+
+# 
+target = './data/raw/coursera_py4e.txt'
+d = categorized_parser.parse(target, 'py4e')
+cloud = generate_word_cloud(d)
+
+output_jsons = output_formatter.convert_to_jsons(d, cloud, 'coursera_py4e.txt')

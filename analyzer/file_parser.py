@@ -13,31 +13,45 @@ import json
 
 # Global variables
 COURSES_OF_INTEREST = ['505', '519', '520', '545', '550', '555', '557']
-READ_PATH = './data/raw/'
 WRITE_PATH = './data/cleaned/mock_comments_cleaned.json'
 DEBUG = False
 
-# class
+# Uncategorized File Parser
+class FileToCourseMapper:
+
+    def __init__(self):
+        pass
+
+    def parse(self, file, keyword='unspecified-keyword'):
+        res = collections.defaultdict(list)
+        fd = open(file, 'r')
+        for line in fd:
+            if not line: continue
+            res[keyword].append(line)
+        return res
+
+# Categorized File Parser
 class CommentToCourseMapper:
 
     def __init__(self):
         # init
         self.course_comments_map = collections.defaultdict(list)
         self.course_numbers = COURSES_OF_INTEREST
-        self.findFiles()
 
-        # read files one-by-one
-        for file in self.files:
-            fd = open(file, 'r')
+    def parse(self, file, save_to_file=False):
+        fd = open(file, 'r')
+        # read lines one-by-one
+        for line in fd:
+            self.add_line_to_corresponding_course(line)
+        fd.close()
+        if save_to_file: self.save_as_json()
+        return self.course_comments_map
 
-            # read lines one-by-one
-            for line in fd:
-                self.add_line_to_corresponding_course(line)
-            fd.close()
-        # self.save_as_json()
+    # Helper functions
 
-    def findFiles(self):
-        self.files = glob.glob( READ_PATH + "*.txt")
+    # def findFiles(self):
+    #     self.files = glob.glob(READ_PATH + "*.txt")
+    #     # print(self.files)
 
     def add_line_to_corresponding_course(self, line):
         # sanity check
@@ -53,11 +67,11 @@ class CommentToCourseMapper:
         fd.write( course_comments_map_json )
         fd.close()
     
-    def get_map(self):
-        return dict(self.course_comments_map)
+    # def get_result(self):
+    #     return dict(self.course_comments_map)
 
     # Helper functions
     def is_invalid(self, line):
         if not line: return True
 
-CommentToCourseMapper()
+# CommentToCourseMapper()

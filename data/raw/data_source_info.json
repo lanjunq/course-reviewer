@@ -1,0 +1,18 @@
+{
+    "files": [
+        {
+            "name": "coursera_problem_solving_murphy.txt",
+            "source": "Coursera",
+            "specific-to-course": "Coursera problem solving"
+        }, 
+        {
+            "name": "coursera_py4e.txt",
+            "source": "Coursera",
+            "specific-to-course": "py4e"
+        },
+        {
+            "name": "mock_comments",
+            "source": "Mock"
+        }
+    ]
+}
