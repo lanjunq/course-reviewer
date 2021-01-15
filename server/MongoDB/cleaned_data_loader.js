@@ -6,10 +6,7 @@ const Course = require('./course');
 const db = require('./mongodb_connection');
 
 // constants
-const input_path = '../data/cleaned/';
-
-// 
-// db();
+const input_path = './data/cleaned/';
 
 var files = fs.readdirSync(input_path);
 for (file of files) {
@@ -29,5 +26,3 @@ for (file of files) {
     }
 }
 
-// let files = // find files at path
-// let rawdata = fs.readFileSync(file);

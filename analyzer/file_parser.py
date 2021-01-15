@@ -14,6 +14,7 @@ import json
 # Global variables
 COURSES_OF_INTEREST = ['505', '519', '520', '545', '550', '555', '557']
 WRITE_PATH = './data/cleaned/mock_comments_cleaned.json'
+PREFIX = 'cis'
 DEBUG = False
 
 # Uncategorized File Parser
@@ -59,7 +60,7 @@ class CommentToCourseMapper:
         # 
         for number in self.course_numbers:
             if number in line:
-                self.course_comments_map[number].append(line)
+                self.course_comments_map[PREFIX + number].append(line)
     
     def save_as_json(self):
         course_comments_map_json = json.dumps(self.course_comments_map)

@@ -23,7 +23,7 @@ processor = nlp.NaturalLanguageProcessor()
 
 # helper function
 def tuples2lists(tuples):
-    print(tuples)
+    # print(tuples)
     return [[x, y] for (x, y) in tuples]
 
 def generate_word_cloud(input_dict):

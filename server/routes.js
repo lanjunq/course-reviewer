@@ -20,7 +20,18 @@ function getAllCourses(req, res) {
       'name': 'unknown'
     };
   });
-  res.json({ courses: springCISCourses });
+  var allCourses = springCISCourses;
+  // Todo: fix manual correction
+  allCourses.push({
+    'department': '',
+    'num': 'murphy',
+    'name': 'unknown'
+  }, {
+    'department': '',
+    'num': 'py4e',
+    'name': 'unknown'
+  });
+  res.json({ courses: allCourses });
 }
 
 function getReviews(req, res) {

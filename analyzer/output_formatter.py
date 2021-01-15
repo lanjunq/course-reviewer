@@ -18,6 +18,8 @@ CONFIG_FILE_PATH = './data/raw/data_source_info.json'
 # Read config file
 fd = open(CONFIG_FILE_PATH, 'r')
 config = json.load(fd)
+configs = (config['files'])
+# print(configs)
 fd.close()
 
 # target format
@@ -48,6 +50,16 @@ def convert_to_jsons(comments_dict, word_cloud_dict, source_file):
     res = []
     courses = comments_dict.keys()
     for course in courses:
+
+        # find config
+        config = False
+        for config_candidate in configs:
+            # print(config_candidate['name'], '\t', course)
+            if config_candidate['name'] == course:
+                config = config_candidate
+                break
+        print('config: ', config)
+
         # init
         course_all_comments = dict()
         course_all_comments['course'] = course
@@ -65,8 +77,8 @@ def convert_to_jsons(comments_dict, word_cloud_dict, source_file):
             course_all_comments['word_cloud'] = dict()
 
         # print
-        pp = pprint.PrettyPrinter(indent=4)
-        pp.pprint(course_all_comments)
+        # pp = pprint.PrettyPrinter(indent=4)
+        # pp.pprint(course_all_comments)
 
         # save to disk
         filepath = './data/cleaned/' + course + '-' + str(random.random()) + '.json'
