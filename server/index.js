@@ -15,8 +15,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 /* ------------------- Route handler registration ----------------- */
 /* ---------------------------------------------------------------- */
 
-app.get("/wordCloud/:courseNum", routes.getWordCloud);
-app.get("/reviews/:courseNum", routes.getReviews);
+app.get("/allCourses", routes.getAllCourses);
+app.get("/wordCloud/:course", routes.getWordCloud); // e.g. cis550, cit592
+app.get("/reviews/:course", routes.getReviews);
+
 
 app.post("/review", routes.postReview);
 
