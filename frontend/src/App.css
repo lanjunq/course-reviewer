@@ -1,0 +1,233 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+
+#components-layout-demo-top-side-2 .logo {
+  float: left;
+  width: 120px;
+  height: 31px;
+  margin: 16px 24px 16px 0;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.ant-row-rtl #components-layout-demo-top-side-2 .logo {
+  float: right;
+  margin: 16px 0 16px 24px;
+}
+
+.site-layout-background {
+  background: #fff;
+}
+
+#components-layout-demo-top-side .logo {
+  float: left;
+  width: 120px;
+  height: 31px;
+  margin: 16px 24px 16px 0;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.ant-row-rtl #components-layout-demo-top-side .logo {
+  float: right;
+  margin: 16px 0 16px 24px;
+}
+
+
+
+/* header */
+
+.header {
+  background-color: #F1F1F1;
+  width: 100%;
+  text-align: center;
+  padding: 8px;
+  position:fixed; top:0; 
+  z-index : 1;
+  margin-top: 0px;
+  display: inline-block;
+}
+.footer{
+  background-color: #ffffff;
+  margin-left: 25%;
+  text-align: center;
+  padding: 8px;
+}
+
+.all{
+  margin-top: 0px;
+}
+
+.sidenav {
+  height: 100%;
+  width: 25%;
+  position: fixed;
+  background-color: grey;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 6px 6px 6px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  scroll-padding-top: var(--top-spacing);
+  
+  margin: var(--top-spacing) auto;
+  margin: 40px;
+  margin-top: 40px;
+  margin-left: 27.5%; /* Same as the width of the sidenav */
+}
+
+
+
+.site-layout-background {
+  background: rgb(255, 255, 255);
+}
+
+.sider-background{
+  background-color: red;
+}
+
+.content-background {
+  background-color: rgb(255, 255, 255);
+}
+Header {
+  background-color: rgb(228, 228, 228);
+}
+
+Footer {
+  background-color: rgb(228, 228, 228);
+}
+
+
+
+/* WordCloud */
+.wordcloud {
+  height: 300px;
+  background-color: rgb(245, 159, 159);
+  align-items: center;
+  text-align: center;
+}
+
+.wordcloud_content {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    margin-top: 0px; 
+    margin-bottom: 30px;
+  
+}
+
+/* Single_comment */
+.comment-line-box {
+
+  background-color: rgb(255, 255, 255);
+  margin-bottom: 5px;
+  padding: 5px;
+  border-bottom: 1.5px solid #a085ff;
+}
+
+.comment_all {
+  margin-bottom: 60px;
+}
+
+.comment-content {
+  font-size: medium;
+  text-align: left;
+  padding-left: 20px;
+}
+
+.source-and-time {
+  font-size: small;
+  display: inline;
+  font-style: italic;
+  color: grey;
+}
+
+.filter-all{
+  list-style-type: none;
+  text-align: left;
+} 
+.filter-bar{
+  display: inline-block;
+  color: grey;
+  padding-bottom: 5px;
+  margin-right: 40px;
+}
+
+
+/*external link*/
+
+.external_link {
+  color: grey;
+  padding-bottom: 5px;
+} 
+
+#pcr{
+  height : 50px;
+  margin: 10px;
+  margin-right: 30px;
+}
+
+#pi{
+  height : 50px;
+  margin: 10px;
+}
+
+
+
+/*search Bar*/
+
+
+/*Course Button*/
+.allCourses{
+  margin-left: 12%;
+  margin-right: 12%;
+  font-family:Optima;
+
+  text-align:center;
+  color: yellow;
+}
+.myButton {
+  height: 20px;
+  background-color:#c9c9c9;
+  margin-bottom: 8px;
+  
+  border-radius:30px;
+  border:0px solid #d0d0d0;
+  display:inline-block;
+  cursor:pointer;
+  font-family:Optima;
+  font-size:70%;
+  text-align:center;
+  color: rgb(255, 255, 255);
+}
+.myButton:hover {
+  background:linear-gradient(to bottom, #9669ff 5%, #ca5fff 100%);
+  background-color:#dc2bff;
+}
+.myButton:active {
+  position:relative;
+  top:1px;
+}
