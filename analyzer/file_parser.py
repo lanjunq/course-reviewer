@@ -27,7 +27,7 @@ class FileToCourseMapper:
         res = collections.defaultdict(list)
         fd = open(file, 'r')
         for line in fd:
-            if not line: continue
+            if is_invalid(line): continue
             res[keyword].append(line)
         return res
 
@@ -56,7 +56,7 @@ class CommentToCourseMapper:
 
     def add_line_to_corresponding_course(self, line):
         # sanity check
-        if self.is_invalid(line): pass
+        if is_invalid(line): return
         # 
         for number in self.course_numbers:
             if number in line:
@@ -71,8 +71,9 @@ class CommentToCourseMapper:
     # def get_result(self):
     #     return dict(self.course_comments_map)
 
-    # Helper functions
-    def is_invalid(self, line):
-        if not line: return True
+# Helper functions
+def is_invalid(line):
+    if not line or line == '\n' : return True
+    return False
 
 # CommentToCourseMapper()

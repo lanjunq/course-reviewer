@@ -24,7 +24,7 @@ class NaturalLanguageProcessor():
         self.lemmatizer = WordNetLemmatizer()
 
     def process(self, line):
-        if not line: return []
+        if not line or line == '\n': return []
         words = self.tokenizer.tokenize(line)
         words = [word.lower() for word in words]
         words = self.remove_stop_words(words)

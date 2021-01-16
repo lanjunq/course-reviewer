@@ -18,7 +18,6 @@ class NLP_PROCESS_MODE(Enum):
     ADV_EXCLUSION = 1,
     ADJ_ONLY = 2
 WORD_CLOUD_PROCESS_MODE = NLP_PROCESS_MODE.ADV_EXCLUSION
-    
 
 # create objects
 uncategorized_parser = file_parser.CommentToCourseMapper()
@@ -109,22 +108,22 @@ def save_json(data, path):
 # generate word clouds
 target = './data/raw/mock_comments.txt'
 d = uncategorized_parser.parse(target)
-# cloud = generate_word_cloud(d)
+cloud = generate_word_cloud(d)
 
-# output_jsons = output_formatter.convert_to_jsons(d, cloud, 'mock_comments.txt')
+output_jsons = output_formatter.convert_to_jsons(d, cloud, 'mock_comments.txt')
 
-# # 
+# 
 target = './data/raw/coursera_problem_solving_murphy.txt'
 d = categorized_parser.parse(target, 'murphy')
 cloud = generate_word_cloud(d)
 pp.pprint(cloud)
 
-# output_jsons = output_formatter.convert_to_jsons(
-#     d, cloud, 'coursera_problem_solving_murphy.txt')
+output_jsons = output_formatter.convert_to_jsons(
+    d, cloud, 'coursera_problem_solving_murphy.txt')
 
-# # 
-# target = './data/raw/coursera_py4e.txt'
-# d = categorized_parser.parse(target, 'py4e')
-# cloud = generate_word_cloud(d)
+# 
+target = './data/raw/coursera_py4e.txt'
+d = categorized_parser.parse(target, 'py4e')
+cloud = generate_word_cloud(d)
 
-# output_jsons = output_formatter.convert_to_jsons(d, cloud, 'coursera_py4e.txt')
+output_jsons = output_formatter.convert_to_jsons(d, cloud, 'coursera_py4e.txt')
