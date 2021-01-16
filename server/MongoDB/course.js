@@ -6,7 +6,8 @@ const courseSchema = new mongoose.Schema({
     comments: [ {
         content: String,
         source: String,
-        time: String
+        time: String,
+        upvotes: Number
     } ] ,
     word_cloud: [
         [ String, Number ]
