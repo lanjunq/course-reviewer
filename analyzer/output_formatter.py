@@ -77,7 +77,7 @@ def convert_to_jsons(comments_dict, word_cloud_dict, source_file):
             course_all_comments['word_cloud'] = dict()
 
         # print
-        # pp = pprint.PrettyPrinter(indent=4)
+        # pp = pprint.prettyprinter(indent=4)
         # pp.pprint(course_all_comments)
 
         # save to disk
