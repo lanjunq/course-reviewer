@@ -12,7 +12,7 @@ CIT_COURSE_NUM = ['591', '592', '593', '594', '595', '596']
 
 /* ------ GET Handlers ------ */
 function getAllCourses(req, res) {
-  var springCISCourses = SPRING_CIS_COURSES_NUM;
+  var springCISCourses = [...SPRING_CIS_COURSES_NUM];
   springCISCourses.forEach((element, index, arr) => {
     arr[index] = {
       'department': 'cis',
