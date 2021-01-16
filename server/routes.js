@@ -30,7 +30,33 @@ function getAllCourses(req, res) {
     'department': '',
     'num': 'py4e',
     'name': 'unknown'
-  });
+  }, {
+    'department': 'cit',
+    'num': '591',
+    'name': 'Introduction to Software Development'
+  }, {
+    'department': 'cit',
+    'num': '592',
+    'name': 'Mathematical Foundations of Computer Science'
+  }, {
+    'department': 'cit',
+    'num': '593',
+    'name': 'Introduction to Computer Systems'
+  }, {
+    'department': 'cit',
+    'num': '594',
+    'name': 'Data Structures & Software Design'
+  }, {
+    'department': 'cit',
+    'num': '595',
+    'name': 'Computer Systems Programming'
+  }, {
+    'department': 'cit',
+    'num': '596',
+    'name': 'Algorithms & Computation'
+  }
+
+  );
   res.json({ courses: allCourses });
 }
 

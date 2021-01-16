@@ -9,7 +9,7 @@ import pprint
 from enum import Enum
 
 # named constants
-WORD_CLOUD_SIZE = 20
+# WORD_CLOUD_SIZE = 20
 READ_PATH = './data/raw/'
 OUTPUT_PATH = './data/cleaned/toMongoDB.json'
 
@@ -23,7 +23,7 @@ WORD_CLOUD_PROCESS_MODE = NLP_PROCESS_MODE.ADV_EXCLUSION
 uncategorized_parser = file_parser.CommentToCourseMapper()
 categorized_parser = file_parser.FileToCourseMapper()
 processor = nlp.NaturalLanguageProcessor()
-pp = pprint.PrettyPrinter(indent=4)
+# pp = pprint.PrettyPrinter(indent=4)
 
 # Todo: pass different file to different parser, according to source_data_info.json
 # files = glob.glob(READ_PATH + "*.txt")
@@ -52,7 +52,7 @@ def generate_word_cloud(input_dict):
         # word_cloud.remove(str(course)) # remove the course number itself
         word_cloud = list(filter((course).__ne__, word_cloud))
         # choose the top common words
-        common_words = nltk.FreqDist(word_cloud).most_common(WORD_CLOUD_SIZE)
+        common_words = nltk.FreqDist(word_cloud).most_common()
         common_words = tuples2lists(common_words) # confront format
         course_cloud_dict[course] = common_words
 
@@ -116,7 +116,7 @@ output_jsons = output_formatter.convert_to_jsons(d, cloud, 'mock_comments.txt')
 target = './data/raw/coursera_problem_solving_murphy.txt'
 d = categorized_parser.parse(target, 'murphy')
 cloud = generate_word_cloud(d)
-pp.pprint(cloud)
+# pp.pprint(cloud)
 
 output_jsons = output_formatter.convert_to_jsons(
     d, cloud, 'coursera_problem_solving_murphy.txt')

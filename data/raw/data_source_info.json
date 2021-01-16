@@ -11,7 +11,7 @@
             "specific-to-course": "py4e"
         },
         {
-            "name": "mock_comments",
+            "name": "mock_comments.txt",
             "source": "Mock"
         }
     ]

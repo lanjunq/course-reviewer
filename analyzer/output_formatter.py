@@ -11,6 +11,7 @@ Workflow:
 import json
 import pprint
 import random
+import datetime
 
 # Constants
 CONFIG_FILE_PATH = './data/raw/data_source_info.json'
@@ -19,6 +20,7 @@ CONFIG_FILE_PATH = './data/raw/data_source_info.json'
 fd = open(CONFIG_FILE_PATH, 'r')
 config = json.load(fd)
 configs = (config['files'])
+# print(configs)
 # print(configs)
 fd.close()
 
@@ -55,10 +57,9 @@ def convert_to_jsons(comments_dict, word_cloud_dict, source_file):
         config = False
         for config_candidate in configs:
             # print(config_candidate['name'], '\t', course)
-            if config_candidate['name'] == course:
+            if config_candidate['name'] == source_file:
                 config = config_candidate
                 break
-        print('config: ', config)
 
         # init
         course_all_comments = dict()
@@ -67,8 +68,15 @@ def convert_to_jsons(comments_dict, word_cloud_dict, source_file):
         # construct individual comments
         for comment in comments_dict[course]:
             comment_info = { 'content': comment }
-            comment_info['time'] = ''
-            comment_info['source'] = 'unknown'
+            # comment_info['time'] = ''
+            fake_date = (datetime.datetime.utcnow() - datetime.timedelta(days=random.randrange(100))).date()
+            comment_info['time'] = str(fake_date)
+            if config and config['source']: 
+                comment_info['source'] = config['source']
+            else:
+                comment_info['source'] = 'unknown'
+            comment_info['upvotes'] = random.randint(0, 20)
+
             course_all_comments['comments'].append(comment_info)
         # construct word cloud
         if course in word_cloud_dict:
