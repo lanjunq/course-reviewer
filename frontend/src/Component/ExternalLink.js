@@ -11,7 +11,7 @@ class ExternalLink extends Component {    //cur course is passed as props to Ext
     }
 
     fetchComments() {   //send request to api fetch 
-        
+
     } 
 
     componentDidUpdate() {
@@ -19,7 +19,9 @@ class ExternalLink extends Component {    //cur course is passed as props to Ext
     }
     
     render() {
-        var pcrLink = `https://penncoursereview.com/course/${this.props.curCourse}`;
+        var course = this.props.curCourse;
+        var courseDash = course.substr(0,3) + '-' + course.substr(3,6);
+        var pcrLink = `https://penncoursereview.com/course/${courseDash}`;
         return (
             <div>
                 <div class = "external_link">External Resources of {this.props.curCourse}</div>

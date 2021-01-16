@@ -29,10 +29,12 @@ class Main extends Component{
 
         return (
             <div class = "all"> 
+            
                 <SearchBar onClick = {this.updateCurCourse}></SearchBar>
                 <div class = "main">
                     <WordCloud curCourse = {this.state.curCourse}></WordCloud>
                     <Comment curCourse = {this.state.curCourse}></Comment>
+                    
                     <ExternalLink curCourse = {this.state.curCourse}></ExternalLink>
                 </div>
             </div>

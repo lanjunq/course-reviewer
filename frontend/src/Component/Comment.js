@@ -70,7 +70,8 @@ class Comment extends Component {
           .then(reviewData => {
             console.log(reviewData);
             let div_comment_list = reviewData.map((obj, i) => (
-                <SingleComment data = {reviewData[i]}></SingleComment>
+
+                <SingleComment data = {obj}></SingleComment>
             ));
             this.setState({
                 comment_list: div_comment_list
@@ -88,6 +89,7 @@ class Comment extends Component {
     render () {
       return( 
         <div class = "comment_all">
+            
             <div class = "filter-all">
                 <div class = "filter-bar">Filter by</div>
                 <div class = "filter-bar">Time</div>

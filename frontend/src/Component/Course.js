@@ -3,17 +3,21 @@ import React, {Component} from 'react'
 import '../App.css'
 
 class Course extends Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
+        this.state = {
+            comment_list: []
+        }
     }
-    
+
     render() {
-        // const{department, num, name} = this.props.data;
-        // console.log(department);
+        console.log(this.props.data.department);
+
         return (
-            <a href="#" class="myButton" >CIT550</a>
+            <a href="#" class="myButton" > {this.props.data.department} {this.props.data.num}</a>
         )
     }
 }
+
 
 export default Course;
