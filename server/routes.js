@@ -22,15 +22,17 @@ function getAllCourses(req, res) {
   });
   var allCourses = springCISCourses;
   // Todo: fix manual correction
-  allCourses.push({
-    'department': '',
-    'num': 'murphy',
-    'name': 'unknown'
-  }, {
-    'department': '',
-    'num': 'py4e',
-    'name': 'unknown'
-  }, {
+  allCourses.push(
+  //   {
+  //     'department': '',
+  //     'num': 'murphy',
+  //     'name': 'unknown'
+  //   }, {
+  //   'department': '',
+  //   'num': 'py4e',
+  //   'name': 'unknown'
+  // }, 
+  {
     'department': 'cit',
     'num': '591',
     'name': 'Introduction to Software Development'

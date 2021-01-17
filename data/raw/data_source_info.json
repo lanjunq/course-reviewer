@@ -13,6 +13,11 @@
         {
             "name": "mock_comments.txt",
             "source": "Mock"
+        },
+        {
+            "name": "mock_519.txt",
+            "source": "Mock",
+            "specific-to-course": "cis519"
         }
     ]
 }

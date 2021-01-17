@@ -127,3 +127,9 @@ d = categorized_parser.parse(target, 'py4e')
 cloud = generate_word_cloud(d)
 
 output_jsons = output_formatter.convert_to_jsons(d, cloud, 'coursera_py4e.txt')
+
+target = './data/raw/mock_519.txt'
+d = categorized_parser.parse(target, 'cis519') # mock cis519
+cloud = generate_word_cloud(d)
+
+output_jsons = output_formatter.convert_to_jsons(d, cloud, 'mock_519.txt')
