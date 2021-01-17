@@ -12,7 +12,7 @@ class Main extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            curCourse: ""
+            curCourse: "cis555"
         }
     }
 
@@ -20,23 +20,23 @@ class Main extends Component{
         this.setState({
             curCourse: course
         });
-        
-        console.log("Main.js" + this.state.curCourse);
         this.forceUpdate();
     }
 
     render() {
 
         return (
+            
             <div class = "all"> 
             
                 <SearchBar onClick = {this.updateCurCourse}></SearchBar>
+                {this.state.curCourse == "" ? <div class = "before-main">start searching</div> : 
                 <div class = "main">
                     <WordCloud curCourse = {this.state.curCourse}></WordCloud>
                     <Comment curCourse = {this.state.curCourse}></Comment>
                     
                     <ExternalLink curCourse = {this.state.curCourse}></ExternalLink>
-                </div>
+                </div>}
             </div>
         )
     }

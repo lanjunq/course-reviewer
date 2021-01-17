@@ -1,6 +1,9 @@
+
+
 .App {
   text-align: center;
 }
+
 
 .App-logo {
   height: 40vmin;
@@ -66,15 +69,15 @@
 
 }
 
-.all{
-  margin-top: 0px;
-}
-
 .sidenav {
   height: 90%;
-  width: 25%;
+  width: 28%;
+  
   position: fixed;
   background-color: grey;
+  background-image: url('./image3.jpeg');
+  background-position-x: center;
+  background-color: rgba(225, 225, 225, 1);
   padding-top:30px;
   overflow-y: scroll;
   padding-bottom: 30px;
@@ -98,9 +101,19 @@
   margin: var(--top-spacing) auto;
   margin-top: 40px;
   margin-bottom: 80px;
-  margin-left: 27.5%; /* Same as the width of the sidenav */
+  margin-left: 30%; /* Same as the width of the sidenav */
+  
 }
 
+.before-main{
+  font-size: 50;
+  scroll-padding-top: var(--top-spacing);
+  margin-top: 40px;
+  margin-bottom: 80px;
+  text-align: center;
+  margin-left: 30%; /* Same as the width of the sidenav */
+  
+}
 
 
 .site-layout-background {
@@ -135,7 +148,7 @@
   background-color: rgb(255, 255, 255);
   margin-bottom: 5px;
   padding: 5px;
-  border-bottom: 1.5px solid #a085ff;
+  border-bottom: 1.8px solid #7e23ff;
 }
 
 .comment_all {
@@ -156,14 +169,43 @@
   color: grey;
 }
 
+#upvote {
+  margin-left: 10px;
+  
+  height:21px;
+  position: relative;
+  top: 6px;
+}
+
+#upvote_count{
+  padding-left: 0px;
+}
+
 .filter-all{
   list-style-type: none;
   text-align: left;
 } 
 .filter-bar{
   display: inline-block;
-  color: grey;
+  
+  background: none;
+	color: grey;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
   margin-right: 40px;
+  font-style: italic;
+  
+}
+
+#no-result {
+  font-size: large;
+  display: inline;
+  display: inline-block;
+  color: grey;
+  text-align: center;
 }
 
 /*external link*/
@@ -188,7 +230,29 @@
 
 
 /*search Bar*/
+#myInput {
+  display: inline;
+  background-color: rgba(24, 24, 24, 0.4);
+  font-size: 15px;
+  width: 70%;
+  padding: 12px 12px 12px 20px;
+  border: 1.8px solid #ddd;
+  margin-bottom: 35px;
+  color:rgb(255, 255, 255);
+  margin-left: 10%;
 
+  
+}
+
+::placeholder {
+  color:  rgb(255, 255, 255) ;
+  opacity: 1; /* Firefox */
+}
+
+#searchIcon{
+  display: inline;
+  height: 30px;
+}
 
 /*Course Button*/
 .allCourses{
@@ -200,24 +264,42 @@
   color: yellow;
 }
 .myButton {
-  height: 20px;
-  background-color:#c9c9c9;
+  height: 23px;
+  background-color: rgba(24, 24, 24, 0.25);
   margin-bottom: 8px;
-  
+  text-transform: uppercase;
   border-radius:30px;
   border:0px solid #d0d0d0;
   display:inline-block;
   cursor:pointer;
-  font-family:Optima;
-  font-size:70%;
+  font-family:Impact, fantasy;
+  
+  font-size:10px;
   text-align:center;
-  color: rgb(255, 255, 255);
+  font-weight: 1;
+  margin-left: 10%;
+  margin-right: 10%;
+
+  color: rgba(255, 255, 255, 1);
+}
+
+.myButton:visited {
+  background:linear-gradient(to bottom, #7e23ff 5%, #7e23ff 100%);
+
+}
+
+.myButton:focus {
+  background:linear-gradient(to bottom, #7e23ff 5%, #7e23ff 100%);
+  color: white;
 }
 .myButton:hover {
-  background:linear-gradient(to bottom, #9669ff 5%, #ca5fff 100%);
-  background-color:#dc2bff;
+  background:linear-gradient(to bottom, #7e23ff 5%, #7e23ff 100%);
+
 }
 .myButton:active {
   position:relative;
-  top:1px;
+  top:1px;               
+  background:linear-gradient(to bottom, #7e23ff 5%, #7e23ff 100%);
+  transform: scale(0.98); 
 }
+
