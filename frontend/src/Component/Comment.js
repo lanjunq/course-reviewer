@@ -2,30 +2,6 @@ import React, {Component} from 'react'
 import '../App.css';
 import SingleComment from './SingleComment';
 
-const fake_json = [
-        {
-            "content": "Racing car sprays burning fuel into crowd.",
-            "source": "Slack",
-            "time": "2019-12-03"
-        }, 
-        {
-            "content": "Japanese princess to wed commoner.",
-            "source": "Facebook",
-            "time": "2020-10-05"
-        },
-        {
-            "content": "Man charged over missing wedding girl.",
-            "source": "Facebook",
-            "time": "2020-3-25"
-        },
-    
-        {
-            "content": "Man charged over missing wedding girl.",
-            "source": "Facebook",
-            "time": "2020-3-25"
-        }
-    ];
-
 class Comment extends Component {
 
     constructor (props) {
@@ -76,13 +52,14 @@ class Comment extends Component {
 
             if (reviewData.length === undefined) {
                 this.setState({
-                    comment_list: ""
+                    comment_list: "",
+                    comment_data: []
                 });
                 return;
             }
             let div_comment_list = reviewData.map((obj, i) => (
 
-                <SingleComment data = {obj}></SingleComment>
+                <SingleComment key = {i} data = {obj}></SingleComment>
             ));
             this.setState({
                 comment_data: reviewData,
@@ -108,7 +85,7 @@ class Comment extends Component {
 
     renderCommentLists = () => {
         let div_comment_list = this.state.comment_data.map((obj, i) => (
-            <SingleComment data = {obj}></SingleComment>
+            <SingleComment key = {i} data = {obj}></SingleComment>
         ));
         this.setState({
             comment_list: div_comment_list

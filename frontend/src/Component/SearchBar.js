@@ -3,154 +3,11 @@ import '../App.css';
 import Course from './Course';
 import searchIcon from "../arrowup.png";
 
-const allCoursesData = {
-    "courses": [
-        {
-            "department": "cis",
-            "num": "511",
-            "name": "unknown"
-        },
-        {
-            "department": "cis",
-            "num": "515",
-            "name": "unknown"
-        },
-        {
-            "department": "cis",
-            "num": "519",
-            "name": "unknown"
-        },
-        {
-            "department": "cis",
-            "num": "520",
-            "name": "unknown"
-        },
-        {
-            "department": "cis",
-            "num": "522",
-            "name": "unknown"
-        },
-        {
-            "department": "cis",
-            "num": "530",
-            "name": "unknown"
-        },
-        {
-            "department": "cis",
-            "num": "535",
-            "name": "unknown"
-        },
-        {
-            "department": "cis",
-            "num": "545",
-            "name": "unknown"
-        },
-        {
-            "department": "cis",
-            "num": "548",
-            "name": "unknown"
-        },
-        {
-            "department": "cis",
-            "num": "550",
-            "name": "unknown"
-        },
-        {
-            "department": "cis",
-            "num": "553",
-            "name": "unknown"
-        },
-        {
-            "department": "cis",
-            "num": "555",
-            "name": "unknown"
-        },
-        {
-            "department": "cis",
-            "num": "557",
-            "name": "unknown"
-        },
-        {
-            "department": "cis",
-            "num": "559",
-            "name": "unknown"
-        },
-        {
-            "department": "cis",
-            "num": "560",
-            "name": "unknown"
-        },
-        {
-            "department": "cis",
-            "num": "561",
-            "name": "unknown"
-        },
-        {
-            "department": "cis",
-            "num": "568",
-            "name": "unknown"
-        },
-        {
-            "department": "cis",
-            "num": "571",
-            "name": "unknown"
-        },
-        {
-            "department": "cis",
-            "num": "580",
-            "name": "unknown"
-        },
-        {
-            "department": "cis",
-            "num": "581",
-            "name": "unknown"
-        },
-        {
-            "department": "",
-            "num": "murphy",
-            "name": "unknown"
-        },
-        {
-            "department": "",
-            "num": "py4e",
-            "name": "unknown"
-        },
-        {
-            "department": "cit",
-            "num": "591",
-            "name": "Introduction to Software Development"
-        },
-        {
-            "department": "cit",
-            "num": "592",
-            "name": "Mathematical Foundations of Computer Science"
-        },
-        {
-            "department": "cit",
-            "num": "593",
-            "name": "Introduction to Computer Systems"
-        },
-        {
-            "department": "cit",
-            "num": "594",
-            "name": "Data Structures & Software Design"
-        },
-        {
-            "department": "cit",
-            "num": "595",
-            "name": "Computer Systems Programming"
-        },
-        {
-            "department": "cit",
-            "num": "596",
-            "name": "Algorithms & Computation"
-        }
-    ]
-}
 class SearchBar extends Component {
     constructor (props) {
         super(props);
         this.state = {
+            course_data: [],
             course_list: [],
             course: ""
         }
@@ -170,7 +27,6 @@ class SearchBar extends Component {
         })
         .then(res =>
           {
-            console.log(res.status);
            if(res.status===401)
             {
              throw new Error("401 error");
@@ -180,7 +36,11 @@ class SearchBar extends Component {
           }) // Convert the response data to a JSON.
     
           .then(coursesData => {
-            this.buildCoursesList(allCoursesData.courses);
+            this.buildCoursesList(coursesData.courses);
+            this.setState({
+                course_data: coursesData.courses
+            });
+            
           })
           .catch((error) => {
           }); 
@@ -208,9 +68,10 @@ class SearchBar extends Component {
 
     buildCoursesList(courseArray) {
         let div_course_list = courseArray.map((obj, i) => (
-            <Course id = {i} data = {courseArray[i]} onClick = {this.updateCurCourse}></Course>
+            <Course key = {i} data = {courseArray[i]} onClick = {this.updateCurCourse}></Course>
         ));
         this.setState({
+  
             course_list: div_course_list
         });
     }
@@ -218,7 +79,7 @@ class SearchBar extends Component {
     myFunction = (e) => {    //filter the output course lists based on the input 
         console.log("myInput", e.target.value);
 
-        var data = allCoursesData.courses;
+        var data = this.state.course_data;
         var value = e.target.value;
         console.log(value);
         console.log(data);
