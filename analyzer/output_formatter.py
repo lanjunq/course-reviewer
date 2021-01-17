@@ -68,14 +68,13 @@ def convert_to_jsons(comments_dict, word_cloud_dict, source_file):
         # construct individual comments
         for comment in comments_dict[course]:
             comment_info = { 'content': comment }
-            # comment_info['time'] = ''
             fake_date = (datetime.datetime.utcnow() - datetime.timedelta(days=random.randrange(100))).date()
             comment_info['time'] = str(fake_date)
             if config and config['source']: 
                 comment_info['source'] = config['source']
             else:
                 comment_info['source'] = 'unknown'
-            comment_info['upvotes'] = random.randint(0, 20)
+            comment_info['upvotes'] = str(random.randint(0, 20))
 
             course_all_comments['comments'].append(comment_info)
         # construct word cloud

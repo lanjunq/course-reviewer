@@ -9,7 +9,7 @@ import pprint
 from enum import Enum
 
 # named constants
-# WORD_CLOUD_SIZE = 20
+WORD_CLOUD_SIZE = 30
 READ_PATH = './data/raw/'
 OUTPUT_PATH = './data/cleaned/toMongoDB.json'
 
@@ -52,7 +52,7 @@ def generate_word_cloud(input_dict):
         # word_cloud.remove(str(course)) # remove the course number itself
         word_cloud = list(filter((course).__ne__, word_cloud))
         # choose the top common words
-        common_words = nltk.FreqDist(word_cloud).most_common()
+        common_words = nltk.FreqDist(word_cloud).most_common(WORD_CLOUD_SIZE)
         common_words = tuples2lists(common_words) # confront format
         course_cloud_dict[course] = common_words
 
