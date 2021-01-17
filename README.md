@@ -2,11 +2,11 @@
 # Course Reviewer
 
 ## Problem to solve
-[Penn Course Review](https://penncoursereview.com/) is a great resource which assists course selection. It provides sufficient quantitative data for students to compare courses from many aspects. 
+[Penn Course Review](https://penncoursereview.com/) is a great resource which assists course selection. It provides ratings of many courses for students to compare.
 
-However, Penn Course Review does not provide students comments on the course. Student reviews are typically more elaborated and therefore provide more detailed information when it comes to course selection.
+However, Penn Course Review misses students' comments beyond numbers. Comments are typically more elaborated and therefore provide more detailed information.
 
-The purpose of this project is to create a course review system that aggregate students' comments from different courses and present the comments to students in a consistent and beautiful interface. By using the system, students save the manual labor of pooling information from various sources, filter out the relevant comments, and repeat the process every semester.
+The purpose of the Review Hub project is to create a course review system that aggregate students' comments from different sources and present the comments to students through a consistent and beautiful interface. By using the system, students save the manual effort of searching information from various sources, filtering out the relevant comments, and repeating the process every semester.
 
 
 ## Workflow
