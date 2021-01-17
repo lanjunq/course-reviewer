@@ -15,7 +15,7 @@ function App() {
         
         <div class = "header">
 
-          Penn's idea - A tool for UPenn students to review past student's comments on CIS&CIT courses
+          Review Hub - A tool for UPenn students to review past student's comments on CIS&CIT courses
         </div>
 
       <Main></Main>
