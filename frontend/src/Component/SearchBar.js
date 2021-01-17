@@ -1,6 +1,7 @@
 import React, {Component}from 'react'
 import '../App.css';
 import Course from './Course';
+import searchIcon from "../arrowup.png";
 
 const allCoursesData = {
     "courses": [
@@ -127,6 +128,7 @@ class SearchBar extends Component {
         this.handleCourseChange = this.handleCourseChange.bind(this);
         this.updateMainCourse = this.updateMainCourse.bind(this);
         this.getAllCourses = this.getAllCourses.bind(this);
+        this.myFunction = this.myFunction.bind(this);
     }
 
     componentDidMount() {
@@ -149,49 +151,91 @@ class SearchBar extends Component {
           }) // Convert the response data to a JSON.
     
           .then(coursesData => {
-            const courseArray = allCoursesData.courses;
-            let div_course_list = courseArray.map((obj, i) => (
-                <Course data = {courseArray[i]}></Course>
-            ));
-
-            this.setState({
-                course_list: div_course_list
-            });
-            
+            this.buildCoursesList(allCoursesData.courses);
           })
           .catch((error) => {
           }); 
     }
-
-    handleCourseChange(e){
+ 
+    handleCourseChange(e){     //current search bar input 
         this.setState({
             course: e.target.value
         });
         console.log(this.state.course);
     }
 
-    updateMainCourse() {
-        console.log("inside updateMainCourse" + this.state.jobTitle);
-        this.props.onClick(this.state.course);
+    updateMainCourse(course) {    //pass this.state.course to parent component 
+        this.props.onClick(course);
+    }
+
+    updateCurCourse = (course) => {
+        this.setState({
+            curCourse: course
+        });
+        
+        //console.log("Main.js" + course);
+        this.updateMainCourse(course);
+    }
+
+    buildCoursesList(courseArray) {
+        let div_course_list = courseArray.map((obj, i) => (
+            <Course id = {i} data = {courseArray[i]} onClick = {this.updateCurCourse}></Course>
+        ));
+        this.setState({
+            course_list: div_course_list
+        });
+    }
+
+    myFunction = (e) => {    //filter the output course lists based on the input 
+        console.log("myInput", e.target.value);
+
+        var data = allCoursesData.courses;
+        var value = e.target.value;
+        console.log(value);
+        console.log(data);
+        console.log(data.length);
+        let filteredData = [];
+        value = value.toUpperCase();
+        
+        for(var i = 0; i < data.length; i++) {
+            var department = data[i].department.toUpperCase();
+            var num = data[i].num;
+            var courseToget = data[i].department.toUpperCase() + data[i].num;
+            var courseWithDash = data[i].department.toUpperCase() + ' ' + data[i].num;
+            var murphy = "murphy";
+            console.log("value!" +value );
+            if (department.includes(value)) {           //"cis"
+                filteredData.push(data[i]);
+            }
+            else if (num.includes(value)) {             //"550"
+                filteredData.push(data[i]);
+            }
+            else if (courseToget.includes(value)) {     //"cis550"
+                filteredData.push(data[i]);
+            }
+            else if (courseWithDash.includes(value)) {  //"cis 550"
+                filteredData.push(data[i]);
+            }
+        }
+        console.log("filteredData", filteredData); 
+        this.buildCoursesList(filteredData);            //call buildCoursesList() to render the updated lists  
     }
 
     render() {
         return (
-            
             <div class="sidenav">
                 <div class = "search">
                     <div class = "input-container">
-                        <input type="text" placeholder="Enter course number" value={this.state.course} onChange={this.handleCourseChange} id="jobTitle"/>
-                        <button onClick={this.updateMainCourse}>Submit</button>
-                    </div>
-                    <button>View All Courses</button> 
-                </div>
-                <div class = "allCourses">
-              
-                    {this.state.course_list}
+                        <i id = 'searchIcon' src={searchIcon}/>
+                        <input type="text" id="myInput" onChange={this.myFunction} placeholder="Type in course number.." title="Type in a name"/>
 
+
+                    </div>
                 </div>
- 
+
+                <div id = "allCourses">
+                    {this.state.course_list}
+                </div>
             </div>
         )
     }
