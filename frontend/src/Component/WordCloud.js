@@ -17,7 +17,8 @@ class WordCloud extends Component {
 
     componentDidUpdate() {
       console.log("within componentDidUpdate" + this.props.curCourse);
-      fetch(`http://localhost:8081/wordCloud/${this.props.curCourse}`, {
+      // fetch(`http://localhost:8081/wordCloud/${this.props.curCourse}`, {
+      fetch(`http://34.237.86.113:8081/wordCloud/${this.props.curCourse}`, {
         method: "GET", // The type of HTTP request.
       })
       .then(res =>

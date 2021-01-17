@@ -22,7 +22,8 @@ class SearchBar extends Component {
     }
 
     getAllCourses() {
-        fetch(`http://localhost:8081/allCourses`, {
+        // fetch(`http://localhost:8081/allCourses`, {
+        fetch(`http://34.237.86.113:8081/allCourses`, {
           method: "GET", // The type of HTTP request.
         })
         .then(res =>
